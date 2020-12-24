@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155abcb39cbed804f9dcdcd05a4171e5, type: 3}
+  m_Name: DriveUtilityUFT
+  m_EditorClassIdentifier: 
+  editorDescription: "This Utility Function takes into account the drive utility
+    to moderate how much impact the side effects have on the final utility.\n\n<b>DU</b>
+    = Drive Utility (0-1): How pressing is the need to reduce this drive?\n<b>DU_INFLU</b>
+    = DU Influence (0-1): \n<b>SE</b> = Side Effects: Sum up all of the side effects
+    from Mappings in the Plan.\n<b>SE_INFLU</b> = SE Influence (0-1): \n\n(DU + DU_INFLU
+    * (1 - DU)) * Drive Reduction Rate +\nSE_INFL * SUM(SE Utilities)"
+  DU_INFLU: 0.5
+  SE_INFLU: 0.25

@@ -89,7 +89,7 @@ namespace TotalAI.Editor
         private void OnEnable()
         {
             // TODO: Better way to find this is customer moves folders?
-            logoImage = (Texture)EditorGUIUtility.Load("Assets/TotalAI/Editor/Images/EmergentStudiosLogo.png");
+            logoImage = (Texture)EditorGUIUtility.Load("Assets/TotalAI/Editor/Images/TotalAILogo.png");
 
             currentTab = 0;
             createTotalAIManager = true;
@@ -652,7 +652,7 @@ namespace TotalAI.Editor
                         }
                         else
                         {
-                            Debug.LogError("Creating GOAPPT - unable to find the GOAPPlannerManager.  Please add to Scene and set in GOAPPT.");
+                            Debug.Log("Creating GOAPPT - No GOAPPlannerManager.");
                         }
                     }
                     else if (asset is BaseDT baseDT)
@@ -669,7 +669,7 @@ namespace TotalAI.Editor
                         }
                         else
                         {
-                            Debug.LogError("Creating BaseDT - unable to find the GOAPPT attached to the GOAPPlannerManager.  Please manually fix BaseDT.");
+                            Debug.Log("Creating BaseDT - unable to find the GOAPPT attached to the GOAPPlannerManager.");
                         }
                     }
                     else if (asset is InventoryType inventoryType)
@@ -885,19 +885,29 @@ namespace TotalAI.Editor
             Handles.DrawLine(new Vector2(rect.x, rect.y), new Vector2(rect.x + rect.width, rect.y));
             EditorGUILayout.EndHorizontal();
 
-            GUILayout.Space(15);
-            if (GUILayout.Button("Reset Matches"))
+            TotalAIManager[] managers = FindObjectsOfType<TotalAIManager>();
+            if (managers.Length == 0)
             {
-                totalAIManager.CreateICToMTDictionary();
+                GUILayout.Space(20);
+                EditorGUILayout.HelpBox("No Total AI Manager found in Scene.  Please add one using Setup or manually.", MessageType.Error, true);
             }
-            GUILayout.Space(15);
+            else
+            {
+                totalAIManager = managers[0];
+                GUILayout.Space(15);
+                if (GUILayout.Button("Reset Matches"))
+                {
+                    totalAIManager.CreateICToMTDictionary();
+                }
+                GUILayout.Space(15);
 
-            matchingScrollPosition = EditorGUILayout.BeginScrollView(matchingScrollPosition);
-            GUILayout.Space(20);
-            if (totalAIManager.fixesInputCondition == null)
-                totalAIManager.CreateICToMTDictionary();
-            DrawICTMappingTypeMatches();
-            EditorGUILayout.EndScrollView();
+                matchingScrollPosition = EditorGUILayout.BeginScrollView(matchingScrollPosition);
+                GUILayout.Space(20);
+                if (totalAIManager.fixesInputCondition == null)
+                    totalAIManager.CreateICToMTDictionary();
+                DrawICTMappingTypeMatches();
+                EditorGUILayout.EndScrollView();
+            }
 
             EditorGUILayout.EndVertical();
             EditorGUIUtility.labelWidth = originalValue;

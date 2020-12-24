@@ -89,7 +89,7 @@ namespace TotalAI.Editor
             doubleClick = false;
 
             reloadIcon = (Texture)EditorGUIUtility.Load("Assets/TotalAI/Editor/Images/reload.png");
-            logoImage = (Texture)EditorGUIUtility.Load("Assets/TotalAI/Editor/Images/EmergentStudiosLogo.png");
+            logoImage = (Texture)EditorGUIUtility.Load("Assets/TotalAI/Editor/Images/TotalAILogo.png");
             downArrowIcon = (Texture)EditorGUIUtility.Load("Assets/TotalAI/Editor/Images/downarrow.png");
             rightArrowIcon = (Texture)EditorGUIUtility.Load("Assets/TotalAI/Editor/Images/rightarrow.png");
 
@@ -676,7 +676,7 @@ namespace TotalAI.Editor
             
             // TODO: Option to toggle sprite update - also handle 3D models
             if (Application.isPlaying && agent != null && agent.totalAIManager.settings.for2D)
-                agentSprite = agent.GetComponent<SpriteRenderer>().sprite;
+                agentSprite = agent.GetComponentInChildren<SpriteRenderer>().sprite;
 
             // TODO: Need a way to detect adding and removing agents
             if (agents == null || agents.Count == 0 || agents[agentIndex] == null)
