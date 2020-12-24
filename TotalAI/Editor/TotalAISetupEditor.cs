@@ -543,17 +543,18 @@ namespace TotalAI.Editor
             {
                 defaultSOFolderRoot += Path.DirectorySeparatorChar;
             }
+
+            AttributeType movementSpeedAT = null;
+            AttributeType detectionRadiusAT = null;
+            Sphere3DST sphere3DST = null;
+            Circle2DST circle2DST = null;
+            UtilityAIPT utilityAIPT = null;
             foreach (KeyValuePair<string, string[]> DirToSOType in coreSOTypesToCreate)
             {
                 string directory = DirToSOType.Key;
                 string[] typeNames = DirToSOType.Value;
-
                 int inventorySlotNum = 0;
                 int attributeTypeNum = 0;
-                AttributeType movementSpeedAT = null;
-                AttributeType detectionRadiusAT = null;
-                Sphere3DST sphere3DST = null;
-                Circle2DST circle2DST = null;
                 foreach (string typeName in typeNames)
                 {
                     if (directory == "InventoryTypes" || directory == "MovementTypes" || directory == "SensorTypes")
@@ -655,12 +656,17 @@ namespace TotalAI.Editor
                             Debug.Log("Creating GOAPPT - No GOAPPlannerManager.");
                         }
                     }
+                    else if (asset is UtilityAIPT)
+                    {
+                        utilityAIPT = (UtilityAIPT)asset;
+                    }
                     else if (asset is BaseDT baseDT)
                     {
                         // Defaults to use the GOAPPT - should be attached to the GOAPPlannerManager
                         GOAPPlannerManager[] goapManagers = FindObjectsOfType<GOAPPlannerManager>();
                         if (goapManagers != null && goapManagers.Length > 0 && goapManagers[0].plannerTypeForGOAP != null)
                         {
+                            baseDT.name = "GOAPDT";
                             baseDT.plannerTypes = new List<PlannerType>
                             {
                                 goapManagers[0].plannerTypeForGOAP
@@ -669,8 +675,16 @@ namespace TotalAI.Editor
                         }
                         else
                         {
-                            Debug.Log("Creating BaseDT - unable to find the GOAPPT attached to the GOAPPlannerManager.");
+                            Debug.Log("Creating GOAPDT - unable to find the GOAPPT attached to the GOAPPlannerManager.");
                         }
+                    }
+                    else if (asset is UtilityAIDT utilityAIDT)
+                    {
+                        utilityAIDT.plannerTypes = new List<PlannerType>
+                        {
+                            utilityAIPT
+                        };
+                        EditorUtility.SetDirty(utilityAIDT);
                     }
                     else if (asset is InventoryType inventoryType)
                     {
