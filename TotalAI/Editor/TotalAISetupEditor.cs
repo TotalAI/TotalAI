@@ -58,7 +58,7 @@ namespace TotalAI.Editor
         private readonly Dictionary<string, string[]> coreSOTypesToCreate = new Dictionary<string, string[]>
         {
             { "OutputChangeTypes", new string[] { "DriveLevelOCT" } },
-            { "InputConditionTypes", new string[] { "DriveLevelICT", "NearEntityICT" } },
+            { "InputConditionTypes", new string[] { "DriveLevelICT", "NearEntityICT", "CurrentActionTypeICT" } },
             { "BehaviorTypes", new string[] { "GoToBT", "NothingBT" } },
             { "AnimationTypes", new string[] { "AnimatorAT", "NoneAT" } },
             { "HistoryTypes", new string[] { "BaseHT", "NoneHT" } },
@@ -544,11 +544,13 @@ namespace TotalAI.Editor
                 defaultSOFolderRoot += Path.DirectorySeparatorChar;
             }
 
+            InputConditionType currentActionTypeICT = null;
             AttributeType movementSpeedAT = null;
             AttributeType detectionRadiusAT = null;
             Sphere3DST sphere3DST = null;
             Circle2DST circle2DST = null;
             UtilityAIPT utilityAIPT = null;
+            GoToBT goToBT = null;
             foreach (KeyValuePair<string, string[]> DirToSOType in coreSOTypesToCreate)
             {
                 string directory = DirToSOType.Key;
@@ -638,6 +640,10 @@ namespace TotalAI.Editor
 
                             settings.driveLevelICT = inputConditionType;
                         }
+                        else if (inputConditionType.name == "CurrentActionTypeICT")
+                        {
+                            currentActionTypeICT = inputConditionType;
+                        }
                     }
                     else if (asset is OutputChangeType outputChangeType && outputChangeType.name == "DriveLevelOCT")
                     {
@@ -659,6 +665,18 @@ namespace TotalAI.Editor
                     else if (asset is UtilityAIPT)
                     {
                         utilityAIPT = (UtilityAIPT)asset;
+                    }
+                    else if (asset is FiniteStateMachinePT finiteStateMachinePT)
+                    {
+                        if (currentActionTypeICT != null)
+                        {
+                            finiteStateMachinePT.currentActionTypeICT = currentActionTypeICT;
+                            EditorUtility.SetDirty(finiteStateMachinePT);
+                        }
+                    }
+                    else if (asset is GoToBT)
+                    {
+                        goToBT = (GoToBT)asset;
                     }
                     else if (asset is BaseDT baseDT)
                     {
@@ -717,6 +735,16 @@ namespace TotalAI.Editor
                         if (asset.name == "MovementSpeedAT")
                         {
                             movementSpeedAT = minMaxFloatAT;
+                            if (goToBT != null)
+                            {
+                                goToBT.defaultSelectors = new List<Selector>();
+                                Selector selector = new Selector
+                                {
+                                    attributeType = movementSpeedAT
+                                };
+                                goToBT.defaultSelectors.Add(selector);
+                                EditorUtility.SetDirty(goToBT);
+                            }
                         }
                         else if (asset.name == "DetectionRadiusAT")
                         {
