@@ -2,7 +2,7 @@
 
 # Total AI
 
-<a href="http://totalai.org">TotalAI.org</a>
+<a target="_blank" href="http://totalai.org">TotalAI.org</a>
 
 Total AI (TAI) is a complete free open source agent based AI Framework for Unity. TAI is currently in Alpha.
 
