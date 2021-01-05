@@ -1,3 +1,5 @@
+<img src="TotalAI/Editor/Images/TotalAILogo.png" align="middle" width="150"/>
+
 # Total AI
 
 <a href="http://totalai.org">TotalAI.org</a>
