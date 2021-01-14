@@ -179,7 +179,7 @@ namespace TotalAI
         public enum AddInventoryTiming { Created, Completed }
         public AddInventoryTiming addDefaultInventoryTiming;
         
-        public List<WOTInventoryRecipe> recipes;
+        public List<InventoryRecipe> recipes;
 
         public override GameObject CreateEntity(int prefabVariantIndex, Vector3 position, Quaternion rotation, Vector3 scale, Entity creator)
         {

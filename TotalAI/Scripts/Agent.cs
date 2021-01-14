@@ -157,7 +157,7 @@ namespace TotalAI
                     DetectEntities();
                     decider.Run();
                     UpdateDriveLevels();
-                    RunEntityModifiers(null, EntityModifier.TriggerType.MainLoop);
+                    RunEntityTriggers(null, EntityTrigger.TriggerType.MainLoop);
                     SetPastLocation();
 
                     if (agentType.useAnimatorOverrides)
@@ -167,90 +167,17 @@ namespace TotalAI
             }
         }
 
+        private void Update()
+        {
+            RunEntityTriggers(null, EntityTrigger.TriggerType.UpdateLoop);
+        }
+
         // Call to run the decider loop early - for example if immediate starting of a mapping is required
         public void RunEarly()
         {
             DetectEntities();
             decider.Run();
         }
-
-        // Tells the agent to perform this actionType on the target - uses the target to figure out the correct MT
-        /*
-        public bool CommandAction(ActionType actionType, Entity target)
-        {
-            Debug.Log("CommandAction called with " + actionType.name + " - " + target);
-
-            MappingType mappingType = actionType.FindMappingType(target);
-
-            if (mappingType != null)
-            {
-                Mapping mapping = new Mapping(actionType, mappingType);
-
-                // Is this needed?  Should there be a "Command" Need or "Null" Need?
-                currentNeedTypesRanked = RankNeeds();
-                currentNeedType = currentNeedTypesRanked.Keys.First();
-                currentPlans = new Plans(currentNeedType, mapping);
-
-                allCurrentPlans = new Dictionary<NeedType, Plans>();
-                plannerManager.CreatePlans(currentPlans, this, agentType);
-
-                Mapping bestRootMapping = currentPlans.GetBestPlan(this, true);
-                if (bestRootMapping != null)
-                {
-                    // Change target - THIS IS A HACK - Needs to be done inside ICT.Check
-                    if (bestRootMapping.parent == null)
-                    {
-                        bestRootMapping.target = target;
-                    }
-                    else if (bestRootMapping.parent.actionType.name == "GoTo")
-                    {
-                        bestRootMapping.parent.target = target;
-                    }
-
-                    // Start with first leave node on left most branch
-                    currentMapping = bestRootMapping.GetLeftmostLeaf();
-                    currentPlanIndex = 0;
-                    rootMappingHistory.Add(currentPlans.rootMappings[currentPlanIndex]);
-                    currentPlans.statuses[currentPlanIndex] = Plans.Status.Running;
-                    rootMappingStatusHistory.Add(Plans.Status.Running);
-                    needHistory.Add(currentNeedType);
-                    needAmountHistory.Add(currentPlans.needAmountEstimates[currentPlanIndex]);
-                    currentPlanStartTime = Time.time;
-
-                    allCurrentPlans.Add(currentNeedType, currentPlans);
-                    if (currentMapping != null)
-                        return true;
-                }
-            }
-
-            return false;
-        }
-        */
-
-        // For DeepRL
-        /*
-        private void GetPlansFromDeepRL()
-        {            
-            // TODO: Put this in Start
-            MLAgents.Agent mlAgent = GetComponent<MLAgents.Agent>();
-
-            // Ask for a decision - this sets of the ml-agents step process
-            mlAgent.RequestDecision();
-        }
-
-        // For DeepRL
-
-        public List<ActionType> GetPossibleActionTypes()
-        {
-            List<ActionType> possibleActionTypes = new List<ActionType>();
-            foreach (ActionType actionType in actions.Keys)
-            {
-                if (actionType.CanPerform(this))
-                    possibleActionTypes.Add(actionType);
-            }
-            return possibleActionTypes;
-        }
-        */
 
         public void Freeze(float seconds)
         {
@@ -336,15 +263,6 @@ namespace TotalAI
             
             if (corpseWorldObjectType != null)
             {
-                /*
-                if (agent != null)
-                    corpseWorldObjectType.CreateEntity(transform.position, corpseWorldObjectType.prefabVariants[0].transform.rotation,
-                        corpseWorldObjectType.prefabVariants[0].transform.localScale, agent.faction, new List<Agent> { agent });
-                else
-                    corpseWorldObjectType.CreateEntity(transform.position, corpseWorldObjectType.prefabVariants[0].transform.rotation,
-                        corpseWorldObjectType.prefabVariants[0].transform.localScale, null, null);
-               */
-
                 if (makeNewCorpseGameObject)
                 {
                     Transform corpseTransform = corpseWorldObjectType.prefabVariants[corpsePrefabVariantIndex].transform;

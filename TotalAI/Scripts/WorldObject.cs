@@ -102,6 +102,11 @@ namespace TotalAI
             }
         }
 
+        private void Update()
+        {
+            RunEntityTriggers(null, EntityTrigger.TriggerType.UpdateLoop);
+        }
+
         // Changes state if allowed - return true if a state change occurred
         public bool ChangeState(Agent agent, WorldObjectType.State newState)
         {
@@ -299,14 +304,14 @@ namespace TotalAI
         public void CheckRecipes(EntityType addedEntityType)
         {
             // Search for this entityType as an input to a recipe
-            List<WOTInventoryRecipe.Recipe> possibleRecipes = new List<WOTInventoryRecipe.Recipe>();
-            foreach (WOTInventoryRecipe recipe in worldObjectType.recipes)
+            List<InventoryRecipe.Recipe> possibleRecipes = new List<InventoryRecipe.Recipe>();
+            foreach (InventoryRecipe recipe in worldObjectType.recipes)
             {
                 possibleRecipes.AddRange(recipe.FindRecipesWithInput(addedEntityType));
             }
 
             // See if any of these are complete matches
-            foreach (WOTInventoryRecipe.Recipe recipe in possibleRecipes)
+            foreach (InventoryRecipe.Recipe recipe in possibleRecipes)
             {
                 if (currentState.name == recipe.state || recipe.state == "")
                 {
@@ -325,7 +330,7 @@ namespace TotalAI
             }
         }
 
-        private IEnumerator RunRecipe(WOTInventoryRecipe.Recipe recipe)
+        private IEnumerator RunRecipe(InventoryRecipe.Recipe recipe)
         {
             // TODO: Play a sound/effect?  Should this come from the WOT or the recipe?
             yield return new WaitForSeconds(recipe.timeInGameMinutes * timeManager.RealTimeSecondsPerGameMinute());

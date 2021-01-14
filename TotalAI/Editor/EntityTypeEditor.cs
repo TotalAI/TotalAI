@@ -14,8 +14,8 @@ namespace TotalAI.Editor
         private ReorderableList prefabVariantsList;
         private SerializedProperty serializedPrefabVariants;
 
-        private ReorderableList entityModifiersList;
-        private SerializedProperty serializedEntityModifiers;
+        private ReorderableList entityTriggersList;
+        private SerializedProperty serializedEntityTriggers;
 
         private ReorderableList defaultTagsList;
         private SerializedProperty serializedDefaultTags;
@@ -48,7 +48,7 @@ namespace TotalAI.Editor
         private static bool showPlacement;
         private static bool showInventory;
         private static bool showPrefabVariants;
-        private static bool showEntityModifiers;
+        private static bool showEntityTriggers;
         private static bool showTags;
 
         private Texture2D expandIcon;
@@ -95,13 +95,13 @@ namespace TotalAI.Editor
                 drawHeaderCallback = DrawPrefabVariantHeader
             };
 
-            serializedEntityModifiers = serializedObject.FindProperty("defaultEntityModifiers");
-            entityModifiersList = new ReorderableList(serializedObject, serializedEntityModifiers, true, true, true, true)
+            serializedEntityTriggers = serializedObject.FindProperty("defaultEntityTriggers");
+            entityTriggersList = new ReorderableList(serializedObject, serializedEntityTriggers, true, true, true, true)
             {
                 drawElementBackgroundCallback = EditorUtilities.DrawReordableListBackground,
-                drawElementCallback = DrawEntityModifierListItems,
-                onAddCallback = OnAddEntityModifier,
-                drawHeaderCallback = DrawEntityModifiersHeader
+                drawElementCallback = DrawEntityTriggerListItems,
+                onAddCallback = OnAddEntityTrigger,
+                drawHeaderCallback = DrawEntityTriggersHeader
             };
 
             serializedDefaultTags = serializedObject.FindProperty("defaultTags");
@@ -772,20 +772,20 @@ namespace TotalAI.Editor
             }
         }
 
-        private void DrawEntityModifiersHeader(Rect rect)
+        private void DrawEntityTriggersHeader(Rect rect)
         {
-            EditorGUI.LabelField(new Rect(rect.x + 15, rect.y + 1, 300, EditorGUIUtility.singleLineHeight + 5), "Entity Modifiers", headerStyle);
+            EditorGUI.LabelField(new Rect(rect.x + 15, rect.y + 1, 300, EditorGUIUtility.singleLineHeight + 5), "Entity Triggers", headerStyle);
         }
-        private void OnAddEntityModifier(ReorderableList list)
+        private void OnAddEntityTrigger(ReorderableList list)
         {
-            serializedEntityModifiers.arraySize++;
+            serializedEntityTriggers.arraySize++;
             SerializedProperty element = list.serializedProperty.GetArrayElementAtIndex(list.serializedProperty.arraySize - 1);
             element.objectReferenceValue = null;
         }
 
-        private void DrawEntityModifierListItems(Rect rect, int index, bool isActive, bool isFocused)
+        private void DrawEntityTriggerListItems(Rect rect, int index, bool isActive, bool isFocused)
         {
-            SerializedProperty element = entityModifiersList.serializedProperty.GetArrayElementAtIndex(index);
+            SerializedProperty element = entityTriggersList.serializedProperty.GetArrayElementAtIndex(index);
 
             EditorGUI.PropertyField(new Rect(rect.x, rect.y, 300, EditorGUIUtility.singleLineHeight), element, GUIContent.none);
         }
@@ -1168,15 +1168,15 @@ namespace TotalAI.Editor
             }
             EditorUtilities.EndInspectorSection(showInventory);
 
-            int numEntityModifiers = serializedObject.FindProperty("defaultEntityModifiers").arraySize;
-            rightInfo = numEntityModifiers > 0 ? numEntityModifiers.ToString() : "None";
-            showEntityModifiers = EditorUtilities.BeginInspectorSection("Entity Modifiers", gearsIcon, showEntityModifiers, sectionColor,
+            int numEntityTriggers = serializedObject.FindProperty("defaultEntityTriggers").arraySize;
+            rightInfo = numEntityTriggers > 0 ? numEntityTriggers.ToString() : "None";
+            showEntityTriggers = EditorUtilities.BeginInspectorSection("Entity Triggers", gearsIcon, showEntityTriggers, sectionColor,
                                                                         sectionBackground, rightInfo);
-            if (showEntityModifiers)
+            if (showEntityTriggers)
             {
-                entityModifiersList.DoLayoutList();
+                entityTriggersList.DoLayoutList();
             }
-            EditorUtilities.EndInspectorSection(showEntityModifiers);
+            EditorUtilities.EndInspectorSection(showEntityTriggers);
             
         }
 
@@ -1186,9 +1186,9 @@ namespace TotalAI.Editor
             showPlacement = expand;
             showInventory = expand;
             showPrefabVariants = expand;
-            showEntityModifiers = expand;
+            showEntityTriggers = expand;
             showTags = expand;
-            showEntityModifiers = expand;
+            showEntityTriggers = expand;
             AgentTypeEditor.showCoreTypes = expand;
             AgentTypeEditor.showDriveTypes = expand;
             AgentTypeEditor.showActionTypes = expand;

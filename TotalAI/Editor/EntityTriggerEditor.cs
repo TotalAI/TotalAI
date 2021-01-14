@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace TotalAI.Editor
 {
 
-    [CustomEditor(typeof(EntityModifier))]
+    [CustomEditor(typeof(EntityTrigger))]
     public class EntityModifierEditor : UnityEditor.Editor
     {
         private float lineHeight;

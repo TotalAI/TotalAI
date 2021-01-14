@@ -38,7 +38,7 @@ namespace TotalAI
 
         public Entity inEntityInventory;
 
-        private List<EntityModifier> entityModifiers;
+        private List<EntityTrigger> entityTriggers;
 
         public Vector3 goingToLocation;
         
@@ -82,7 +82,7 @@ namespace TotalAI
         {
             ResetAttributes();
             ResetTags();
-            ResetEntityModifiers();
+            ResetEntityTriggers();
 
             // TODO: Turn into method
             inventoryType = entityType.defaultInventoryType;
@@ -153,12 +153,12 @@ namespace TotalAI
             }
         }
 
-        private void ResetEntityModifiers()
+        private void ResetEntityTriggers()
         {
-            entityModifiers = new List<EntityModifier>();
-            foreach (EntityModifier entityModifier in entityType.defaultEntityModifiers)
+            entityTriggers = new List<EntityTrigger>();
+            foreach (EntityTrigger entityTrigger in entityType.defaultEntityTriggers)
             {
-                entityModifiers.Add(entityModifier);
+                entityTriggers.Add(entityTrigger);
             }
         }
 
@@ -358,7 +358,7 @@ namespace TotalAI
             if (target != null)
             {
                 Debug.Log(name + ": On Collision Enter between " + name + " and " + target.name);
-                RunEntityModifiers(target, EntityModifier.TriggerType.OnCollisionEnter);
+                RunEntityTriggers(target, EntityTrigger.TriggerType.OnCollisionEnter);
             }
         }
 
@@ -368,7 +368,7 @@ namespace TotalAI
             if (target != null)
             {
                 Debug.Log(name + ": On Collision Exit between " + name + " and " + target.name);
-                RunEntityModifiers(target, EntityModifier.TriggerType.OnCollisionExit);
+                RunEntityTriggers(target, EntityTrigger.TriggerType.OnCollisionExit);
             }
         }
 
@@ -378,7 +378,7 @@ namespace TotalAI
             if (target != null)
             {
                 Debug.Log(name + ": On Collision Stay between " + name + " and " + target.name);
-                RunEntityModifiers(target, EntityModifier.TriggerType.OnCollisionStay);
+                RunEntityTriggers(target, EntityTrigger.TriggerType.OnCollisionStay);
             }
         }
 
@@ -388,7 +388,7 @@ namespace TotalAI
             if (target != null)
             {
                 //Debug.Log(name + ": OnTriggerEnter - " + target.name + " Entered the Trigger");
-                RunEntityModifiers(target, EntityModifier.TriggerType.OnTriggerEnter);
+                RunEntityTriggers(target, EntityTrigger.TriggerType.OnTriggerEnter);
             }
         }
 
@@ -398,7 +398,7 @@ namespace TotalAI
             if (target != null)
             {
                 //Debug.Log(name + ": OnTriggerExit - " + target.name + " Exited the Trigger");
-                RunEntityModifiers(target, EntityModifier.TriggerType.OnTriggerExit);
+                RunEntityTriggers(target, EntityTrigger.TriggerType.OnTriggerExit);
             }
         }
 
@@ -408,7 +408,7 @@ namespace TotalAI
             if (target != null)
             {
                 Debug.Log(name + ": OnTriggerStay - " + target.name + " Is in the Trigger");
-                RunEntityModifiers(target, EntityModifier.TriggerType.OnTriggerStay);
+                RunEntityTriggers(target, EntityTrigger.TriggerType.OnTriggerStay);
             }
         }
 
@@ -419,22 +419,22 @@ namespace TotalAI
             if (target != null)
             {
                 Debug.Log(name + ": OnParticleCollision - " + target.name + " hit this Entity.");
-                RunEntityModifiers(target, EntityModifier.TriggerType.OnParticleCollision);
+                RunEntityTriggers(target, EntityTrigger.TriggerType.OnParticleCollision);
             }
         }
 
-        public void RunEntityModifiers(Entity target, EntityModifier.TriggerType triggerType)
+        public void RunEntityTriggers(Entity target, EntityTrigger.TriggerType triggerType)
         {
             //Debug.Log(name + ": RunEntityModifiers for " + triggerType + " - target = " + (target != null ? target.name : "None"));
-            foreach (EntityModifier entityModifier in entityModifiers)
+            foreach (EntityTrigger entityTrigger in entityTriggers)
             {
-                if (entityModifier != null && entityModifier.triggerType == triggerType)
+                if (entityTrigger != null && entityTrigger.triggerType == triggerType)
                 {
                     //Debug.Log(name + ": TryToRun EntityModifier for " + triggerType + " - target = " + (target != null ? target.name : "None"));
-                    if (entityModifier.forTarget && target != null)
-                        entityModifier.TryToRun(target, this);
-                    else if (!entityModifier.forTarget)
-                        entityModifier.TryToRun(this, target);
+                    if (entityTrigger.forTarget && target != null)
+                        entityTrigger.TryToRun(target, this);
+                    else if (!entityTrigger.forTarget)
+                        entityTrigger.TryToRun(this, target);
                 }
             }
         }

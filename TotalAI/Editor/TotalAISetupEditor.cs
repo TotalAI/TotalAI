@@ -47,11 +47,11 @@ namespace TotalAI.Editor
         {
             "ActionTypes", "AgentEventTypes", "AgentTypeOverrides", "AgentTypes", "AnimationTypes", "AttributeTypes", "BehaviorTypes",
             "ChangeConditions", "ChangeConditionTypes", "Choices", "ChoiceTypes", "DeciderTypes", "DriveEquationTypes", "DriveTypes",
-            "EntityModifiers", "Factions", "HistoryTypes", "InputConditionTypes", "InteractionSpotTypes", "InventorySlotConditions",
+            "EntityTriggers", "Factions", "HistoryTypes", "InputConditionTypes", "InteractionSpotTypes",  "InventoryRecipes", "InventorySlotConditions",
             "InventorySlots", "InventoryTypes", "ItemConditions", "MappingTypes", "MemoryTypes", "MinMaxCurves", "MinMaxes",
             "MovementTypes", "OutputChangeTypes", "PlannerTypes", "RoleTypes", "SelectorFactors", "SelectorTypes",
             "SensorTypes", "TagTypes", "TargetFactors", "TypeCategories", "TypeGroups", "UtilityFunctionTypes",
-            "UtilityModifiers", "UtilityModifierTypes", "WorldObjectTypes", "WOTInventoryRecipes"
+            "UtilityModifiers", "UtilityModifierTypes", "WorldObjectTypes",
         };
 
         // Directory -> SO Type Name

@@ -8,8 +8,7 @@ namespace TotalAI.GOAP
     [CreateAssetMenu(fileName = "FiniteStateMachinePT", menuName = "Total AI/Planner Types/Finite State Machine", order = 0)]
     public class FiniteStateMachinePT : PlannerType
     {
-        [SerializeField]
-        private InputConditionType currentActionTypeICT = null;
+        public InputConditionType currentActionTypeICT = null;
 
         private Dictionary<Agent, Plans> nextPlans;
 

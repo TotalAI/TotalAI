@@ -101,7 +101,7 @@ namespace TotalAI
 
             // Check agent's AgentModifiers to see if change triggered any of them
             if (actualAmount != 0f)
-                agent.RunEntityModifiers(null, EntityModifier.TriggerType.LevelChange);
+                agent.RunEntityTriggers(null, EntityTrigger.TriggerType.LevelChange);
             
             return actualAmount;
         }
@@ -119,7 +119,7 @@ namespace TotalAI
         {
             // The amount has already been checked by original change update to original faction member
             level += amount;
-            agent.RunEntityModifiers(null, EntityModifier.TriggerType.LevelChange);
+            agent.RunEntityTriggers(null, EntityTrigger.TriggerType.LevelChange);
         }
         
         public float CurrentDriveChangeRate(float minutesIntoDay)

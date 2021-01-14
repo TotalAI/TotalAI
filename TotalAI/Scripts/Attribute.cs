@@ -70,7 +70,7 @@ namespace TotalAI {
 
                 // TODO: Make 0.01f an option in Settings
                 if (Mathf.Abs(newValue - initialValue) > 0.01f)
-                    entity.RunEntityModifiers(null, EntityModifier.TriggerType.LevelChange);
+                    entity.RunEntityTriggers(null, EntityTrigger.TriggerType.LevelChange);
             }
             else
             {

@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace TotalAI
 {
-    [CreateAssetMenu(fileName = "EntityModifier", menuName = "Total AI/Entity Modifier", order = 1)]
-    public class EntityModifier : ScriptableObject
+    [CreateAssetMenu(fileName = "EntityTrigger", menuName = "Total AI/Entity Trigger", order = 1)]
+    public class EntityTrigger : ScriptableObject
     {
         public enum TriggerType { MainLoop, UpdateLoop, LevelChange, OnTriggerEnter, OnTriggerExit, OnTriggerStay,
                                   OnCollisionEnter, OnCollisionExit, OnCollisionStay, OnParticleCollision };
@@ -43,17 +42,17 @@ namespace TotalAI
 
                     if (!succeeded)
                     {
-                        Debug.Log(agent.name + ": Failed OutputChange on  EntityModifier " + name + " OCs - with target = " + target);
+                        Debug.Log(agent.name + ": Failed OutputChange on  EntityTrigger " + name + " OCs - with target = " + target);
                     }
                 }
                 else
                 {
-                    Debug.Log(agent.name + ": InputConditions Failed for EntityModifier " + name + " with target = " + target);
+                    Debug.Log(agent.name + ": InputConditions Failed for EntityTrigger " + name + " with target = " + target);
                 }
             }
             else
             {
-                Debug.Log(entity.name + ": IsTriggered failed for EntityModifier " + name + " with target = " + target);
+                Debug.Log(entity.name + ": IsTriggered failed for EntityTrigger " + name + " with target = " + target);
             }
         }
 
@@ -124,14 +123,14 @@ namespace TotalAI
                 
                 if (!outputChange.CheckConditions(outputChangeTarget, agent, null, amount))
                 {
-                    Debug.Log(agent + ": EntityModifier.RunOutputChanges - output conditions failed - " + this);
+                    Debug.Log(agent + ": EntityTrigger.RunOutputChanges - output conditions failed - " + this);
                     if (outputChange.stopType == OutputChange.StopType.OnOCCFailed)
                         return false;
                 }
 
                 bool succeeded = outputChange.outputChangeType.MakeChange(agent, outputChangeTarget, outputChange, null, amount, out bool forceStop);
 
-                Debug.Log(agent + ": " + this + " EntityModifier.RunOutputChanges - output condition " + outputChange.outputChangeType.name +
+                Debug.Log(agent + ": " + this + " EntityTrigger.RunOutputChanges - output condition " + outputChange.outputChangeType.name +
                           " succeeded = " + succeeded + " - target = " + target);
 
                 if ((forceStop && !outputChange.blockMakeChangeForcedStop) ||

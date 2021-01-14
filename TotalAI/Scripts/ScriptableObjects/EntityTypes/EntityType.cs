@@ -97,7 +97,7 @@ namespace TotalAI
         }
         public List<DefaultInventory> defaultInventory;
 
-        public List<EntityModifier> defaultEntityModifiers;
+        public List<EntityTrigger> defaultEntityTriggers;
 
         public abstract GameObject CreateEntity(int prefabVariantIndex, Vector3 position, Quaternion rotation, Vector3 scale, Entity creator);
 

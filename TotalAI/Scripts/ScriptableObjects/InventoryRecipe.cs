@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace TotalAI
 {
-    [CreateAssetMenu(fileName = "WOTInventoryRecipe", menuName = "Total AI/WOT Inventory Recipe", order = 1)]
-    public class WOTInventoryRecipe : ScriptableObject
+    [CreateAssetMenu(fileName = "InventoryRecipe", menuName = "Total AI/Inventory Recipe", order = 1)]
+    public class InventoryRecipe : ScriptableObject
     {
         [Serializable]
         public class Recipe
