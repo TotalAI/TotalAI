@@ -28,7 +28,8 @@ See <a href="http://totalai.org/contrib-introduction.html">Contribute Documentat
 
 ## Integrations
 Due to Total AI's comprehesive Type System intregrating your Asset with Total AI should be simple.
-For example if your Asset is agent Sensors, you will just need to create custom SensorTypes that call your Sensors.
+For example if your Asset is agent Sensors, you will just need to create custom
+<a href="http://totalai.org/doc-sensortype.html">Sensor Types</a> that call your Sensors.
 
 Let us know if you have an integration in your repo and/or would like us to create a separate repo for your TAI integration.
 
@@ -38,4 +39,4 @@ others can use it to quick start their game.  Let us know and we'll add a repo f
 
 ## Add-Ons
 Did you create a set of Types for a certain Unity feature?  For example a type system for Unity's Animation Rigging System.
-Consider turing it into an Add-On so others can use it.  Let us know and we'll add a repo for it.
+Consider turning it into an Add-On so others can use it.  Let us know and we'll add a repo for it.
