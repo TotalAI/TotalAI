@@ -56,13 +56,14 @@ namespace TotalAI
         public List<InputOutputType> allInputOutputTypes;
         public List<EntityType> allEntityTypes;
         public List<TypeGroup> allTypeGroups;
+        public List<MappingType> allMappingTypes;
 
         // Grabs these from settings when running - provides a way to update all NavMeshes in Scene
         private List<MovementType> movementTypes;
         
         public Dictionary<TypeCategory, List<InputOutputType>> typeCategoryToIOTs;
 
-        // Entity Loopup Dictionary
+        // Entity Lookup Dictionary
         public Dictionary<EntityType, List<Entity>> entityTypeToEntityInScene = new Dictionary<EntityType, List<Entity>>();
 
         public static TotalAIManager manager;
@@ -174,6 +175,19 @@ namespace TotalAI
             foreach (TypeGroup typeGroup in allTypeGroups)
             {
                 manager.allTypeGroups.Add(typeGroup);
+            }
+
+            List<MappingType> allMappingTypes = new List<MappingType>();
+            guids = AssetDatabase.FindAssets("t:MappingType");
+            foreach (string guid in guids)
+            {
+                allMappingTypes.Add((MappingType)AssetDatabase.LoadMainAssetAtPath(AssetDatabase.GUIDToAssetPath(guid)));
+            }
+
+            manager.allMappingTypes = new List<MappingType>();
+            foreach (MappingType mappingType in allMappingTypes)
+            {
+                manager.allMappingTypes.Add(mappingType);
             }
 
             EditorUtility.SetDirty(manager);
