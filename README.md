@@ -1,4 +1,4 @@
-<img src="TotalAI/Editor/Images/TotalAILogo.png" align="middle" width="150"/>
+<img src="TotalAI/Editor/Images/TotalAILogo.png" width="200"/> 
 
 # Total AI
 
@@ -18,6 +18,30 @@ reduce their Drives based on the Mapping (the core unit of planning) with the mo
 and Plan/Mapping System. It is also easy to extend and customize through ScriptableObject's pluggable data
 and logic ability. This makes writing and plugging in your own custom AI logic easy.
 
+## Features
+* Designed from the ground up to be take advantage of Unity's unique features.
+* Customizable - Usually will just need to implement a few methods to create a new type.
+* Quick to Prototype - easy to switch between various AI types.
+* Flexible - ScriptableObject Type system allows for lego-like building parts.
+* Multi-Agent - Agent Events allow for multi-agent coordination.
+* Intelligent division of Agent’s functions - Planner, Decider, Sensors, Memory, Movement, and Animation.
+* World Objects (Non-Agents) have states, state transitionss, grow, built, damage, change appearance, and inventory recipes.
+* Inventory - Slot based inventory system that allows any Entity to be in any other Entity’s inventory.
+* Factions - Groups of Agents, can be figured into the Planning.
+* Drive based Planning - Agents will choose most pressing drive to lower.
+* Allows for complex logic for Drive level changes - faction synced - attribute synced - custom equation changes.
+* Target Factors - Utility AI like selection process for choosing best target and best inventory target.
+* Selectors - Advanced selection logic for choosing values to use in a Mapping.
+* Mapping - Powerful core unit of Planning - It has Target Factors, Utility Modifiers, Input Conditions, and Output Changes.
+* Behavior/Decider Logic - Allows for complex logic for running and interrupting Mappings.
+* Supported AI type GOAP, Utility AI, FSM - Deep RL coming soon.
+* Attributes - Generic value types for Agents.
+* Roles - Allow for Actions/Drives to be changed dynamically.
+* Tags - Useful for controlling Mappings and can also be used to create relationships between Entities.
+* TypeCategories/TypeGroups - Attach multiple categories to Entities - Generalizes Mappings.
+* Agent View Editor - See each Agent and all of its settings.  Realtime history logging and plan tree visualization.
+* Setup Editor - Quick Basic Setup for a Project using the Setup Editor.
+* Custom Inspectors - Extensive use of custom inspectors for increased ease of use.
 
 ## Contribute
 Total AI was just launched as an open source project.
