@@ -82,16 +82,5 @@ namespace TotalAI
             Debug.Log("Unable to find explicit agent event type permission in faction - denying permission to create event.");
             return false;
         }
-
-        // A member calls this when they change a faction drive level
-        public void UpdateOtherMembersDriveLevel(Agent updatingAgent, DriveType driveType, float amount)
-        {
-            foreach (Agent agent in agents)
-            {
-                if (updatingAgent != agent)
-                    agent.drives[driveType].ChangeFactionDriveLevel(amount);
-            }
-        }
-
     }
 }

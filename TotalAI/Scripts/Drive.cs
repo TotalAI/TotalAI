@@ -99,9 +99,10 @@ namespace TotalAI
                 agent.attributes[driveType.syncAttributeType].ChangeLevelUsingDriveLevel(level, driveType.syncAttributeDirection);
             }
 
-            // Check agent's AgentModifiers to see if change triggered any of them
-            if (actualAmount != 0f)
-                agent.RunEntityTriggers(null, EntityTrigger.TriggerType.LevelChange);
+            // Check agent's EntityTriggers to see if change triggered any of them
+            // TODO: Make 0.01f an option in Settings
+            if (Mathf.Abs(actualAmount) > 0.01f)
+                agent.RunEntityTriggers(null, EntityTrigger.TriggerType.LevelChange, driveType);
             
             return actualAmount;
         }
@@ -113,13 +114,6 @@ namespace TotalAI
                 level = (attributeLevel - min) / (max - min) * 100f;
             else
                 level = (1f - (attributeLevel - min) / (max - min)) * 100f;
-        }
-
-        public void ChangeFactionDriveLevel(float amount)
-        {
-            // The amount has already been checked by original change update to original faction member
-            level += amount;
-            agent.RunEntityTriggers(null, EntityTrigger.TriggerType.LevelChange);
         }
         
         public float CurrentDriveChangeRate(float minutesIntoDay)

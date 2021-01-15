@@ -423,7 +423,7 @@ namespace TotalAI
             }
         }
 
-        public void RunEntityTriggers(Entity target, EntityTrigger.TriggerType triggerType)
+        public void RunEntityTriggers(Entity target, EntityTrigger.TriggerType triggerType, LevelType levelType = null)
         {
             //Debug.Log(name + ": RunEntityModifiers for " + triggerType + " - target = " + (target != null ? target.name : "None"));
             foreach (EntityTrigger entityTrigger in entityTriggers)
@@ -432,9 +432,9 @@ namespace TotalAI
                 {
                     //Debug.Log(name + ": TryToRun EntityModifier for " + triggerType + " - target = " + (target != null ? target.name : "None"));
                     if (entityTrigger.forTarget && target != null)
-                        entityTrigger.TryToRun(target, this);
+                        entityTrigger.TryToRun(target, this, levelType);
                     else if (!entityTrigger.forTarget)
-                        entityTrigger.TryToRun(this, target);
+                        entityTrigger.TryToRun(this, target, levelType);
                 }
             }
         }

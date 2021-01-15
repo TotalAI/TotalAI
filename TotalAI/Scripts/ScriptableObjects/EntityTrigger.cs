@@ -30,9 +30,9 @@ namespace TotalAI
             lastRan = new Dictionary<Entity, float>();
         }
 
-        public void TryToRun(Entity entity, Entity target, float level = 0)
+        public void TryToRun(Entity entity, Entity target, LevelType levelType)
         {
-            if (IsTriggered(entity, target, level))
+            if (IsTriggered(entity, target, levelType))
             {
                 Agent agent = entity as Agent;
                 if (CheckInputConditions(agent, target))
@@ -76,7 +76,7 @@ namespace TotalAI
             return true;
         }
 
-        private bool IsTriggered(Entity entity, Entity target, float level)
+        private bool IsTriggered(Entity entity, Entity target, LevelType levelType)
         {
             if (lastRan.TryGetValue(entity, out float time) && Time.time - time < coolDown)
                 return false;
@@ -85,7 +85,6 @@ namespace TotalAI
             {
                 case TriggerType.MainLoop:
                 case TriggerType.UpdateLoop:
-                case TriggerType.LevelChange:
                     return true;
                 case TriggerType.OnTriggerEnter:
                 case TriggerType.OnTriggerExit:
@@ -95,6 +94,10 @@ namespace TotalAI
                 case TriggerType.OnCollisionStay:
                 case TriggerType.OnParticleCollision:
                     if ((!forTarget && TypeMatch(target.entityType)) || (forTarget && TypeMatch(entity.entityType)))
+                        return true;
+                    break;
+                case TriggerType.LevelChange:
+                    if (levelType == this.levelType)
                         return true;
                     break;
             }
@@ -138,6 +141,13 @@ namespace TotalAI
                     return false;
 
             }
+            return true;
+        }
+
+        public static bool HasTarget(TriggerType triggerType)
+        {
+            if (triggerType == TriggerType.LevelChange || triggerType == TriggerType.MainLoop || triggerType == TriggerType.UpdateLoop)
+                return false;
             return true;
         }
     }

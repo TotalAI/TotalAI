@@ -102,7 +102,6 @@ namespace TotalAI.Editor
         public override void OnInspectorGUI()
         {
             infoBoxStyle = EditorStyles.helpBox;
-            //infoBoxStyle.border = new RectOffset(10, 10, 10, 10);
             Texture2D texture = new Texture2D(1, 1);
             texture.SetPixels(new Color[] { new Color(0.3f, 0.3f, 0.3f) });
             texture.Apply();
@@ -121,27 +120,33 @@ namespace TotalAI.Editor
             GUI.enabled = true;
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("triggerType"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("forTarget"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("levelType"));
-
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("targetMatchType"));
-            
-            InputCondition.MatchType ownerMatchType = (InputCondition.MatchType)serializedObject.FindProperty("targetMatchType").enumValueIndex;
-            switch (ownerMatchType)
-            {
-                case InputCondition.MatchType.TypeGroup:
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("typeGroup"));
-                    break;
-                case InputCondition.MatchType.TypeCategory:
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("typeCategory"));
-                    break;
-                case InputCondition.MatchType.EntityType:
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("entityType"));
-                    break;
-            }
-
             EditorGUILayout.PropertyField(serializedObject.FindProperty("coolDown"));
+            EntityTrigger.TriggerType triggerType = (EntityTrigger.TriggerType)serializedObject.FindProperty("triggerType").enumValueIndex;
 
+            if (triggerType == EntityTrigger.TriggerType.LevelChange)
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("levelType"));
+
+            if (EntityTrigger.HasTarget(triggerType))
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("forTarget"));
+
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("targetMatchType"));
+
+                InputCondition.MatchType ownerMatchType = (InputCondition.MatchType)serializedObject.FindProperty("targetMatchType").enumValueIndex;
+                switch (ownerMatchType)
+                {
+                    case InputCondition.MatchType.TypeGroup:
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("typeGroup"));
+                        break;
+                    case InputCondition.MatchType.TypeCategory:
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("typeCategory"));
+                        break;
+                    case InputCondition.MatchType.EntityType:
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("entityType"));
+                        break;
+                }
+            }
+            
             GUILayout.Space(10f);
             inputConditionList.DoLayoutList();
 
