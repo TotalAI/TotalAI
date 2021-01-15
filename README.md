@@ -14,9 +14,9 @@ for a broad array of AI types and for a broad array of game types.  Eventually T
 vast library of community created types that anyone can use to jumpstart their AI.
 
 The core of TAI are Agents who can to sense the world, create memories, plans, and act in order to
-reduce their Drives based on the Mapping (the core unit of planning) with the most utility. This is accomplished with its Type System
-and Plan/Mapping System. It is also easy to extend and customize through ScriptableObject's pluggable data
-and logic ability. This makes writing and plugging in your own custom AI logic easy.
+reduce their Drives based on the Mapping (the core unit of planning) with the most utility. This is accomplished
+with its Type System and Plan/Mapping System. It is also easy to extend and customize through ScriptableObject's
+pluggable data and logic ability. This makes writing and plugging in your own custom AI logic easy.
 
 ## Features
 * Designed from the ground up to be take advantage of Unity's unique features.
@@ -25,29 +25,30 @@ and logic ability. This makes writing and plugging in your own custom AI logic e
 * Flexible - ScriptableObject Type system allows for lego-like building parts.
 * Multi-Agent - Agent Events allow for multi-agent coordination.
 * Intelligent division of Agent’s functions - Planner, Decider, Sensors, Memory, Movement, and Animation.
-* World Objects have states, state transitionss, grow, built, damage, change appearance, and inventory recipes.
+* World Objects have states, state transitions, grow, built, damage, change appearance, and inventory recipes.
 * Inventory - Slot based inventory system that allows any Entity to be in any other Entity’s inventory.
 * Factions - Groups of Agents, can be figured into the Planning.
-* Drive based Planning - Agents will choose most pressing drive to lower.
+* Drive (Motivation) based Planning - Agents will choose most pressing drive to lower.
 * Allows for complex logic for Drive level changes - faction synced - attribute synced - custom equation changes.
 * Target Factors - Utility AI like selection process for choosing best target and best inventory target.
 * Selectors - Advanced selection logic for choosing values to use in a Mapping.
 * Mapping - The core unit of planning has Target Factors, Utility Modifiers, Input Conditions, and Output Changes.
 * Behavior/Decider Logic - Allows for complex logic for running and interrupting Mappings.
-* Supported AI type GOAP, Utility AI, FSM - Deep RL coming soon.
+* Mulitple supported AI types - GOAP, Utility AI, and FSM - Deep RL using ml-agents coming soon.
 * Attributes - Generic value types for Agents.
-* Roles - Allow for Actions/Drives to be changed dynamically.
+* Roles - Allows for Actions and Drives to be changed dynamically.
 * Tags - Useful for controlling Mappings and can also be used to create relationships between Entities.
 * TypeCategories/TypeGroups - Attach multiple categories to Entities - Generalizes Mappings.
 * Agent View Editor - See each Agent and all of its settings.  Realtime history logging and plan tree visualization.
 * Setup Editor - Quick Basic Setup for a Project using the Setup Editor.
 * Custom Inspectors - Extensive use of custom inspectors for increased ease of use.
+* Extensive Documentation with goal of having 100% documentation coverage.
 
-## Agent Flow Diagram
+## Agent Logic Flow Diagram
 <img src="AgentFlow.png" /> 
 
 ## Contribute
-Total AI was just launched as an open source project.
+Are you passionate about AI and Unity?  Come apply your passion to help make Total AI great!
 This is a great time to jump in and have a major impact on the current and future development of Total AI.
 
 See <a href="http://totalai.org/contrib-introduction.html">Contribute Documentation</a> for more Information.
@@ -74,3 +75,7 @@ others can use it to quick start their game.  Let us know and we'll add a repo f
 ## Add-Ons
 Did you create a set of Types for a certain Unity feature?  For example a type system for Unity's Animation Rigging System.
 Consider turning it into an Add-On so others can use it.  Let us know and we'll add a repo for it.
+
+## MIT Licensed
+A short, permissive software license. Basically, you can do whatever you want as long as you include the original copyright
+and license notice in any copy of the software/source.
