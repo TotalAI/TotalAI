@@ -49,7 +49,7 @@ pluggable data and logic ability. This makes writing and plugging in your own cu
 
 ## Contribute
 Are you passionate about AI and Unity?  Come apply your passion to help make Total AI great!
-This is a great time to jump in and have a major impact on the current and future development of Total AI.
+This is the perfect time to jump in and have a major impact on the current and future development of Total AI.
 
 See <a href="http://totalai.org/contrib-introduction.html">Contribute Documentation</a> for more Information.
 
