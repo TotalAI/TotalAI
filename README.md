@@ -8,6 +8,8 @@
 <a href="https://www.youtube.com/channel/UCTznMlxoaeJMPm1dC26HvUA">YouTube Channel</a><br>
 <a href="https://discord.gg/jf52tnUFX2">Discord Server</a><br>
 
+Watch the <a href="https://www.youtube.com/watch?v=0iYzfrM0cjI">4 minute Overview Video</a>.
+
 Total AI (TAI) is a complete free open source agent based AI Framework for Unity.
 Its goals are to provide an easy to prototype, flexible, fully customizable, and performant framework
 for a broad array of AI types and for a broad array of game types.  Eventually TAI hopes to have a
@@ -17,6 +19,11 @@ The core of TAI are Agents who can to sense the world, create memories, plans, a
 reduce their Drives based on the Mapping (the core unit of planning) with the most utility. This is accomplished
 with its Type System and Plan/Mapping System. It is also easy to extend and customize through ScriptableObject's
 pluggable data and logic ability. This makes writing and plugging in your own custom AI logic easy.
+
+## Install & Setup
+Read the <a href="http://totalai.org/doc-installation.html">Documentation</a>
+or
+watch the <a href="https://www.youtube.com/watch?v=XsqUmfCPf7M">Video</a>.
 
 ## Features
 * Designed from the ground up to be take advantage of Unity's unique features.
