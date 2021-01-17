@@ -36,17 +36,17 @@ watch the <a href="https://www.youtube.com/watch?v=XsqUmfCPf7M">Video</a>.
 * Inventory - Slot based inventory system that allows any Entity to be in any other Entity’s inventory.
 * Factions - Groups of Agents, can be figured into the Planning.
 * Drive (Motivation) based Planning - Agents will choose most pressing drive to lower.
-* Allows for complex logic for Drive level changes - faction synced - attribute synced - custom equation changes.
+* Complex logic for Drive level changes - faction synced - attribute synced - custom equation changes.
 * Target Factors - Utility AI like selection process for choosing best target and best inventory target.
 * Selectors - Advanced selection logic for choosing values to use in a Mapping.
-* Mapping - The core unit of planning has Target Factors, Utility Modifiers, Input Conditions, and Output Changes.
+* Mapping - Core unit of planning has Target Factors, Utility Modifiers, Input Conditions, and Output Changes.
 * Behavior/Decider Logic - Allows for complex logic for running and interrupting Mappings.
 * Mulitple supported AI types - GOAP, Utility AI, and FSM - Deep RL using ml-agents coming soon.
 * Attributes - Generic value types for Agents.
 * Roles - Allows for Actions and Drives to be changed dynamically.
 * Tags - Useful for controlling Mappings and can also be used to create relationships between Entities.
 * TypeCategories/TypeGroups - Attach multiple categories to Entities - Generalizes Mappings.
-* Agent View Editor - See each Agent and all of its settings.  Realtime history logging and plan tree visualization.
+* Agent View Editor - Agent properties, realtime history logging and plan tree visualization.
 * Setup Editor - Quick Basic Setup for a Project using the Setup Editor.
 * Custom Inspectors - Extensive use of custom inspectors for increased ease of use.
 * Extensive Documentation with goal of having 100% documentation coverage.
