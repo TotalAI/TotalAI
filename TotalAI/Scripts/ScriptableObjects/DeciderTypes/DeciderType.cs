@@ -8,6 +8,19 @@ namespace TotalAI
     {
         public List<PlannerType> plannerTypes;
 
+        public virtual void Setup(Agent agent)
+        {
+            // Make sure there is one and only one plannerType
+            if (plannerTypes == null || plannerTypes.Count != 1)
+            {
+                Debug.LogError(agent.name + ": Is using a DeciderType that requires exactly one PlannerType.  Please check " + name + ".");
+            }
+            else
+            {
+                plannerTypes[0].Setup(agent);
+            }
+        }
+
         public virtual PlannerType GetActivePlannerType(Agent agent)
         {
             return plannerTypes[0];
@@ -48,19 +61,6 @@ namespace TotalAI
                 }
             }
             return false;
-        }
-
-        public virtual void Setup(Agent agent)
-        {
-            // Make sure there is one and only one plannerType
-            if (plannerTypes == null || plannerTypes.Count != 1)
-            {
-                Debug.LogError(agent.name + ": Is using a DeciderType that requires exactly one PlannerType.  Please check " + name + ".");
-            }
-            else
-            {
-                plannerTypes[0].Setup(agent);
-            }
         }
 
         // What should agent do when they have no valid plans?
@@ -195,6 +195,7 @@ namespace TotalAI
         }
 
         // TODO: Should this not change plans if the new plan is the same?
+        // TODO: THIS IS NOT TESTED - Currently DeciderTYpe never switches plans between Mappings
         // Maybe Changes plans when between Mappings of the current plan
         public virtual int MaybeChangePlan(Agent agent, Mapping currentMapping, DriveType newDriveType,
                                             Dictionary<DriveType, Plans> newPlans, long timeToPlan,
