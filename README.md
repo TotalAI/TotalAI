@@ -60,6 +60,13 @@ This is the perfect time to jump in and have a major impact on the current and f
 
 See <a href="http://totalai.org/contrib-introduction.html">Contribute Documentation</a> for more Information.
 
+## Financial Support
+Do you want to see continued progress on Total AI's push from Alpha to Production?
+Consider financial support for the creator of TAI on <a href="https://patreon.com/zacwarren">Patreon</a>.
+All Patrons of $5 or more will have the option to be featured on this Readme and
+The website's <a href="http://totalai.org/contributors.html">Contributors Page</a>
+along with a logo and a link to their personal/business website.
+
 ## Currently Implemented AI Types
 * <a href="http://totalai.org/doc-goap.html">GOAP</a>
 * <a href="http://totalai.org/doc-utility-ai.html">Utility AI</a>
