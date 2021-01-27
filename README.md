@@ -2,11 +2,14 @@
 
 # Total AI
 
-<b>In Alpha so expect bugs/issues and breaking changes.</b>
+<b>In Alpha so expect bugs/issues and breaking changes.  TAI should work on any recent version of Unity.</b>
 
 <a href="http://totalai.org/doc-introduction.html">Documentation</a><br>
 <a href="https://www.youtube.com/channel/UCTznMlxoaeJMPm1dC26HvUA">YouTube Channel</a><br>
 <a href="https://discord.gg/jf52tnUFX2">Discord Server</a><br>
+
+<a href="https://github.com/TotalAI/TotalAI-3D-Demo">3D Demo World Repo</a><br>
+<a href="https://github.com/TotalAI/TotalAI-2D-Demo">2D Demo World Repo</a><br>
 
 Watch the <a href="https://www.youtube.com/watch?v=0iYzfrM0cjI">4 minute Overview Video</a>.
 
