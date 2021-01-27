@@ -19,6 +19,7 @@ namespace TotalAI
         [SerializeField]
         [Header("Use these lists to include or exclude specific EntityTypes")]
         private List<EntityType> includeEntityTypes = null;
+        [SerializeField]
         private List<EntityType> excludeEntityTypes = null;
 
         // Caches every EntityType match for this Grouping for performance
